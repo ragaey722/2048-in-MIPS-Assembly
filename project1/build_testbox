@@ -1,0 +1,18 @@
+#! /bin/sh
+set -eu
+
+
+if [ -z ${1+x} ]; then
+    echo "Bitte geben Sie eine Testdatei als Argument an."
+    echo "Verwendung ./build_testbox /path/to/file/<TestDatei>.asm"
+    exit
+fi
+
+SOURCES="src/check_victory.asm src/merge.asm src/move_left.asm src/complete_move.asm src/move_one.asm src/place.asm src/printboard.asm src/move_check.asm src/points.asm src/util.asm tests/test_utils.asm"
+
+
+echo "Baue Ordner \"testbox\" fuer den Test $1"
+rm -rf testbox/*
+mkdir -p testbox
+cp $SOURCES $1 testbox/
+
